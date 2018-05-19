@@ -13,7 +13,7 @@ Leap.Controller.plugin('transform', transform);
  */
 module.exports = {
   schema: {
-    leapOptions: {},
+    host: {default: '127.0.0.1'},
     vr: {default: true},
     scale: {default: DEFAULT_SCALE},
     position: {
@@ -36,8 +36,10 @@ module.exports = {
   },
 
   init: function () {
-    this.controller = Leap.loop(this.date.leapOptions)
-      .use('transform', this.data);
+    this.controller = Leap.loop({
+      host: this.data.host
+    })
+    .use('transform', this.data);
   },
 
   getFrame: function () {
