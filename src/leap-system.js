@@ -13,6 +13,7 @@ Leap.Controller.plugin('transform', transform);
  */
 module.exports = {
   schema: {
+    leapOptions: {},
     vr: {default: true},
     scale: {default: DEFAULT_SCALE},
     position: {
@@ -35,7 +36,7 @@ module.exports = {
   },
 
   init: function () {
-    this.controller = Leap.loop()
+    this.controller = Leap.loop(this.date.leapOptions)
       .use('transform', this.data);
   },
 
